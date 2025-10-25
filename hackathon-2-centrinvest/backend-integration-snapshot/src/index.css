@@ -1,0 +1,394 @@
+/* Безопасная загрузка шрифтов с fallback */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Poppins:wght@300;400;500;600;700;800&display=swap');
+
+/* Fallback шрифты на случай, если Google Fonts не загрузятся */
+@font-face {
+  font-family: 'Inter-Fallback';
+  src: local('Arial'), local('Helvetica'), local('sans-serif');
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Poppins-Fallback';
+  src: local('Arial'), local('Helvetica'), local('sans-serif');
+  font-display: swap;
+}
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  html {
+    font-family: 'Inter', system-ui, sans-serif;
+    scroll-behavior: smooth;
+  }
+  
+  body {
+    @apply bg-background text-text-primary;
+    overflow-x: hidden;
+  }
+
+  * {
+    @apply transition-all duration-300 ease-in-out;
+  }
+}
+
+@layer components {
+  .btn-primary {
+    @apply bg-gradient-to-r from-primary-500 to-primary-600 hover:from-primary-600 hover:to-primary-700 text-white font-medium py-3 px-6 rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 ease-out;
+  }
+  
+  .btn-secondary {
+    @apply bg-gradient-to-r from-secondary-100 to-secondary-200 hover:from-secondary-200 hover:to-secondary-300 text-text-primary font-medium py-3 px-6 rounded-xl shadow-md hover:shadow-lg transition-all duration-300 ease-out;
+  }
+
+  .btn-accent {
+    @apply bg-gradient-to-r from-accent-500 to-accent-600 hover:from-accent-600 hover:to-accent-700 text-white font-medium py-3 px-6 rounded-xl shadow-lg hover:shadow-xl transform hover:scale-105 transition-all duration-300 ease-out;
+  }
+  
+  .input-field {
+    @apply w-full px-4 py-3 border-2 border-secondary-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-primary-500 bg-surface/50 backdrop-blur-sm transition-all duration-300;
+  }
+
+  .input-field:focus {
+    @apply shadow-lg transform scale-105;
+  }
+  
+  .card {
+    @apply bg-gradient-to-br from-white to-surface rounded-2xl shadow-lg border border-secondary-200/50 backdrop-blur-sm hover:shadow-xl transition-all duration-300;
+    min-height: fit-content;
+  }
+
+  .card-hover {
+    @apply hover:shadow-xl hover:bg-gradient-to-br hover:from-white hover:to-primary-50 transition-all duration-300 ease-out;
+  }
+
+  .glass-effect {
+    @apply bg-white/10 backdrop-blur-md border border-white/20;
+  }
+
+  .text-gradient {
+    @apply bg-gradient-to-r from-primary-600 to-accent-600 bg-clip-text text-transparent;
+  }
+
+  .hero-title {
+    @apply text-4xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-8xl font-display font-bold text-gradient animate-fade-in;
+    line-height: 1.1;
+  }
+
+  .floating-element {
+    @apply animate-float;
+  }
+
+  .pulse-glow {
+    @apply animate-pulse-slow;
+  }
+
+  .bounce-gentle {
+    @apply animate-bounce-slow;
+  }
+
+  .spin-slow {
+    @apply animate-spin-slow;
+  }
+
+  .star-twinkle {
+    @apply animate-star-twinkle;
+  }
+
+  .slide-in-left {
+    @apply animate-slide-in;
+  }
+
+  .fade-in-up {
+    @apply animate-fade-in;
+  }
+
+  .scale-in {
+    @apply animate-scale-in;
+  }
+
+  /* Кастомные скроллбары */
+  ::-webkit-scrollbar {
+    width: 8px;
+  }
+
+  ::-webkit-scrollbar-track {
+    @apply bg-secondary-100;
+  }
+
+  ::-webkit-scrollbar-thumb {
+    @apply bg-primary-400 rounded-full;
+  }
+
+  ::-webkit-scrollbar-thumb:hover {
+    @apply bg-primary-500;
+  }
+
+  /* Анимации для появления элементов */
+  .animate-on-scroll {
+    opacity: 0;
+    transform: translateY(30px);
+    transition: all 0.6s ease-out;
+  }
+
+  .animate-on-scroll.visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  /* Responsive стили */
+  @media (max-width: 640px) {
+    .hero-title {
+      font-size: 2.5rem;
+      line-height: 1.2;
+    }
+
+    .card {
+      margin-bottom: 1rem;
+      padding: 1rem;
+    }
+
+    .btn-primary, .btn-secondary, .btn-accent {
+      padding: 0.75rem 1.5rem;
+      font-size: 0.9rem;
+    }
+
+    /* Улучшение для таблиц на мобильных */
+    table {
+      font-size: 0.875rem;
+    }
+
+    /* Уменьшение отступов для мобильных */
+    .p-6 {
+      padding: 1rem;
+    }
+
+    .px-6 {
+      padding-left: 1rem;
+      padding-right: 1rem;
+    }
+
+    .py-6 {
+      padding-top: 1rem;
+      padding-bottom: 1rem;
+    }
+
+    /* Адаптация input полей */
+    input, select, textarea {
+      font-size: 16px; /* Предотвращает zoom на iOS */
+    }
+  }
+
+  @media (max-width: 768px) {
+    .hero-title {
+      font-size: 3rem;
+    }
+
+    /* Адаптация для планшетов */
+    .card {
+      padding: 1.25rem;
+    }
+
+    /* Скрытие некоторых элементов на планшетах в портретной ориентации */
+    .md\:hidden {
+      display: none;
+    }
+  }
+
+  @media (min-width: 1024px) {
+    .hero-title {
+      font-size: 4.5rem;
+    }
+  }
+
+  @media (min-width: 1280px) {
+    .hero-title {
+      font-size: 5rem;
+    }
+  }
+
+  /* Планшеты в альбомной ориентации */
+  @media (min-width: 768px) and (max-width: 1024px) {
+    .card {
+      padding: 1.5rem;
+    }
+  }
+
+  /* Улучшение touch targets для мобильных устройств */
+  @media (pointer: coarse) {
+    button, a {
+      min-height: 44px; /* Рекомендация Apple для touch targets */
+      min-width: 44px;
+    }
+  }
+
+  /* Предотвращение горизонтального скролла */
+  body {
+    overflow-x: hidden;
+  }
+
+  /* Эффект печатания */
+  .typing-effect {
+    overflow: hidden;
+    border-right: 2px solid;
+    white-space: nowrap;
+    animation: typing 3s steps(40, end), blink-caret 0.75s step-end infinite;
+  }
+
+  @keyframes typing {
+    from { width: 0 }
+    to { width: 100% }
+  }
+
+  @keyframes blink-caret {
+    from, to { border-color: transparent }
+    50% { border-color: currentColor }
+  }
+
+  /* Mobile optimizations for meetings page */
+  @media (max-width: 640px) {
+    /* Touch-friendly drag and drop */
+    [draggable="true"] {
+      -webkit-user-select: none;
+      user-select: none;
+      touch-action: none;
+    }
+
+    /* Larger touch targets for mobile */
+    .meeting-card,
+    .schedule-item {
+      min-height: 80px;
+      padding: 16px;
+    }
+
+    /* Optimize modal for mobile */
+    .modal-content {
+      max-height: 90vh;
+      overflow-y: auto;
+    }
+
+    /* Better spacing for form inputs on mobile */
+    .input-field {
+      font-size: 16px; /* Prevents zoom on iOS */
+      padding: 12px;
+    }
+
+    /* Sticky headers for better mobile UX */
+    .sticky-header {
+      position: sticky;
+      top: 0;
+      z-index: 10;
+      background: white;
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    }
+  }
+
+  /* Tablet optimizations */
+  @media (min-width: 640px) and (max-width: 1024px) {
+    /* Two-column layout for meeting cards */
+    .meeting-grid {
+      grid-template-columns: repeat(2, 1fr);
+    }
+
+    /* Adjust card sizes for tablets */
+    .card {
+      padding: 1.25rem;
+    }
+  }
+
+  /* Desktop optimizations */
+  @media (min-width: 1024px) {
+    /* Three-column layout for larger screens */
+    .meeting-grid {
+      grid-template-columns: repeat(3, 1fr);
+    }
+
+    /* More spacious layout on desktop */
+    .card {
+      padding: 1.5rem;
+    }
+
+    /* Hover effects only on desktop (not touch devices) */
+    @media (hover: hover) {
+      .meeting-card:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+      }
+    }
+  }
+
+  /* Prevent text selection during drag */
+  .dragging * {
+    user-select: none;
+    -webkit-user-select: none;
+  }
+
+  /* Drag feedback */
+  .drag-over {
+    background-color: rgba(59, 130, 246, 0.1);
+    border-color: #3b82f6;
+  }
+
+  /* Smooth transitions for drag and drop */
+  .draggable-item {
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+  }
+
+  .draggable-item.dragging {
+    opacity: 0.5;
+    transform: scale(0.95);
+  }
+
+  /* Accessibility improvements */
+  @media (prefers-reduced-motion: reduce) {
+    * {
+      animation-duration: 0.01ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.01ms !important;
+    }
+  }
+
+  /* Dark mode support for future */
+  @media (prefers-color-scheme: dark) {
+    /* Dark mode styles can be added here */
+  }
+
+  /* Landscape orientation optimizations for mobile */
+  @media (max-width: 900px) and (orientation: landscape) {
+    .modal-content {
+      max-height: 80vh;
+    }
+
+    /* Reduce padding in landscape to fit more content */
+    .p-6 {
+      padding: 0.75rem;
+    }
+  }
+
+  /* Print styles */
+  @media print {
+    .no-print,
+    button,
+    .btn-primary,
+    .btn-secondary,
+    .btn-accent {
+      display: none !important;
+    }
+
+    .card {
+      break-inside: avoid;
+    }
+  }
+
+  /* Safe area insets for notched devices (iPhone X, etc.) */
+  @supports (padding-top: env(safe-area-inset-top)) {
+    body {
+      padding-top: env(safe-area-inset-top);
+      padding-bottom: env(safe-area-inset-bottom);
+      padding-left: env(safe-area-inset-left);
+      padding-right: env(safe-area-inset-right);
+    }
+  }
+}
