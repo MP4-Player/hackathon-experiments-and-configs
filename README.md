@@ -45,7 +45,7 @@ Team: [@meeporen](https://github.com/meeporen), [@vladuliksss](https://github.co
 
 ## Hackathon 3: Surface defect detection (October–November 2025)
 
-A mini-task of an online hackathon: find surface defects (cracks, scratches) on cylindrical metal parts in video. The work stopped before the defence, so this folder keeps what was left: a description of the annotated datasets, two trained models and the videos produced by the pipeline. The pipeline code itself has not survived.
+A mini-task of an online hackathon: find surface defects (cracks, scratches) on cylindrical metal parts in video. The work stopped before the defence, so this folder keeps what was left: a description of the annotated datasets and of the result videos, and two trained models. The pipeline code itself has not survived.
 
 **Pipeline.** Two YOLO stages run on every video frame:
 
@@ -73,7 +73,7 @@ The dataset itself is not published.
 | `best-1.pt` | crop | YOLOv8m | `part` | 16 Oct 2025 | 50 | 0.992 | 1.000 | 0.995 | 0.947 |
 | `best_2.pt` | detect | YOLO11n | `item` | 12 Nov 2025 | 100 | 0.986 | 0.964 | 0.981 | 0.707 |
 
-**Results.** `processed_results.zip` holds 80 videos (22 Nov 2025): every combination of 4 crop models (`best-1`, `best-2`, `best-3`, `best-82-part`) and 4 detect models (`best_1`, `best_2`, `best_3`, `best-no-ag-defect`) on 5 test videos. Each frame is annotated with the model pair and the number of detections. Only `best-1.pt` and `best_2.pt` of these models are available.
+**Results.** The pipeline produced 80 result videos (22 Nov 2025, not published): every combination of 4 crop models (`best-1`, `best-2`, `best-3`, `best-82-part`) and 4 detect models (`best_1`, `best_2`, `best_3`, `best-no-ag-defect`) on 5 test videos. Each frame is annotated with the model pair and the number of detections. Only `best-1.pt` and `best_2.pt` of these models are available.
 
 ![Result frame](hackathon-3-defect-detection/images/result_frame.jpg)
 
@@ -85,7 +85,6 @@ The dataset itself is not published.
 |---|---|---|
 | `best-1.pt` | 52 MB | Crop model |
 | `best_2.pt` | 5 MB | Defect detection model |
-| `processed_results.zip` | 1.9 GB | 80 result videos |
 
 ```python
 from ultralytics import YOLO
